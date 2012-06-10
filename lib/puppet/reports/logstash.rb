@@ -38,7 +38,7 @@ def process
     event["@fields"]["start_time"] = log.time
     event["@fields"]["end_time"] = Time.now
     event["@fields"]["severity"] = log.level
-    event["@fileds"]["metrics"] = metrics || {}
+    event["@fields"]["metrics"] = metrics || {}
     event["@message"] = log.message
     begin
       Timeout::timeout(CONFIG[:timeout]) do
