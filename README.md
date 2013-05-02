@@ -32,7 +32,7 @@ To install logstash from master:
 * Create a simple Logstash config like so (called logstash.conf):
 
 ```
-input { tcp { type => "puppet-report" port => "5959" } }
+input { tcp { type => "puppet-report" port => "5959" format => "json_event" } }
 output { stdout { debug => true debug_format => "json" } }
 ```
 * run logstash with the configuration file
