@@ -1,8 +1,5 @@
-puppet-logstash-report
+evenup-logstash_report
 ======================
-
-**WARNING**
-This is currently untested. I'm in the process of rebuilding my puppet development environment.
 
 Description
 -----------
@@ -23,12 +20,6 @@ input { tcp { type => "puppet-report" port => "5959" } }
 ```
 
 **NOTE**
-This currently only works with logstash MASTER which has neccessary changes to the `json_event` format for inputs.
-To install logstash from master:
-
-* Make sure you have java + ant installed and on your PATH
-* clone the repo from https://github.com/logstash/logstash
-* run `make jar`
 * Create a simple Logstash config like so (called logstash.conf):
 
 ```
@@ -38,7 +29,7 @@ output { stdout { debug => true debug_format => "json" } }
 * run logstash with the configuration file
 
 ```
-java -jar build/logstash--monolithic.jar agent -f logstash.conf
+java -jar build/logstash-<version>-flatjar.jar agent -f logstash.conf
 ```
 
 * Follow the installation instructions below, changing host to the host where logstash is running and port to match the port you defined in your Logstash configuration file.
@@ -66,4 +57,4 @@ pluginsync = true
 
 Credits
 -------
-Pretty much anything @jamrtur01 has ever written about or coded for Puppet
+This module was originally posted John Vincent at https://github.com/lusis/puppet-logstash-reporter
