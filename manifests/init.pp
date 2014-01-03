@@ -26,6 +26,7 @@
 #
 # === Authors
 #
+# * John E. Vincent
 # * Justin Lambert <mailto:jlambert@letsevenup.com>
 #
 #
