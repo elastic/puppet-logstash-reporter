@@ -1,5 +1,5 @@
-name 'puppet-logstash-reporter'
-version '0.0.1'
+name 'puppet-logstash_reporter'
+version '0.1.0'
 license 'Apache 2.0'
 summary 'Report processor that sends logs and metrics as json_events to Logstash'
-project_page 'https://github.com/lusis/puppet-logstash-reporter'
+project_page 'https://github.com/logstash/puppet-logstash-reporter'
