@@ -27,8 +27,3 @@ matrix:
       env: PUPPET_VERSION="~> 3.1.0"
 notifications:
   email: false
-  hipchat:
-    rooms:
-      - secure: "fETBLE60AAb7Q8NN2rffTr2frIqgGK0MStF12AKDMIhKH2mW3Q9q2U2kQotQJSxFkQOCd77xuJTv6vBo2vi/XF3auOJz+KHdspNrsgRoFthM3VmM9nSG704CtuAlJu2gRXS+XnlVjrbJdfAa92lXNJrs35ALQ3uIv6115A9+/ro="
-  on_success: always
-  on_failure: always
