@@ -1,6 +1,5 @@
-name 'evenup-logstash_reporter'
+name 'puppet-logstash_reporter'
 version '0.1.0'
 license 'Apache 2.0'
 summary 'Report processor that sends logs and metrics as json_events to Logstash'
-project_page 'https://github.com/evenup/puppet-logstash_reporter'
-author 'Justin Lambert <jlambert@letsevenup.com>'
+project_page 'https://github.com/logstash/puppet-logstash-reporter'

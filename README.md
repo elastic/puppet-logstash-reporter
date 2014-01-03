@@ -1,5 +1,5 @@
-evenup-logstash_report
-======================
+puppet-logstash_reporter
+========================
 
 Description
 -----------
