@@ -31,9 +31,7 @@ Puppet::Reports.register_report(:logstash) do
     end
 
     event = Hash.new
-    event["source"] = "puppet://#{self.host}"
-    event["source_path"] = 'puppet'
-    event["source_host"] = self.host
+    event["host"] = self.host
     event["@timestamp"] = Time.now.utc.iso8601
     event["@version"] = 1
     event["tags"] = ["puppet-#{self.kind}"]
