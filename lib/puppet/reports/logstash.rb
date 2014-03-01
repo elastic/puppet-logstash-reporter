@@ -31,25 +31,23 @@ Puppet::Reports.register_report(:logstash) do
     end
 
     event = Hash.new
-    event["@fields"] = Hash.new
-    event["@source"] = "puppet://#{self.host}"
-    event["@source_path"] = 'puppet'
-    event["@source_host"] = self.host
+    event["host"] = self.host
     event["@timestamp"] = Time.now.utc.iso8601
-    event["@tags"] = ["puppet-#{self.kind}"]
-    event["@message"] = "Puppet run on #{self.host} #{self.status}"
-    event["@fields"]["logs"] = logs
-    event["@fields"]["environment"] = self.environment
-    event["@fields"]["report_format"] = self.report_format
-    event["@fields"]["puppet_version"] = self.puppet_version
-    event["@fields"]["status"] = self.status
-    event["@fields"]["start_time"] = self.logs.first.time
-    event["@fields"]["end_time"] = self.logs.last.time
-    event["@fields"]["metrics"] = {}
+    event["@version"] = 1
+    event["tags"] = ["puppet-#{self.kind}"]
+    event["message"] = "Puppet run on #{self.host} #{self.status}"
+    event["logs"] = logs
+    event["environment"] = self.environment
+    event["report_format"] = self.report_format
+    event["puppet_version"] = self.puppet_version
+    event["status"] = self.status
+    event["start_time"] = self.logs.first.time
+    event["end_time"] = self.logs.last.time
+    event["metrics"] = {}
     metrics.each do |k,v|
-      event["@fields"]["metrics"][k] = {}
+      event["metrics"][k] = {}
       v.values.each do |val|
-        event["@fields"]["metrics"][k][val[1]] = val[2]
+        event["metrics"][k][val[1]] = val[2]
       end
     end
 
