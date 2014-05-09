@@ -38,12 +38,14 @@ class logstash_reporter (
   $logstash_host  = '127.0.0.1',
   $logstash_port  = 5999,
   $config_file  = '/etc/puppet/logstash.yaml',
+  $config_owner = 'puppet',
+  $config_group = 'puppet',
 ){
 
   file { $config_file:
     ensure  => file,
-    owner   => 'puppet',
-    group   => 'puppet',
+    owner   => $config_owner,
+    group   => $config_group,
     mode    => '0444',
     content => template('logstash_reporter/logstash.yaml.erb'),
   }
