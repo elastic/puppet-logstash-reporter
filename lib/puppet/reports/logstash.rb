@@ -47,7 +47,7 @@ Puppet::Reports.register_report(:logstash) do
     metrics.each do |k,v|
       event["metrics"][k] = {}
       v.values.each do |val|
-        event["metrics"][k][val[1]] = val[2]
+        event["metrics"][k][val[1].tr('[A-Z ]', '[a-z_]')] = val[2]
       end
     end
 
