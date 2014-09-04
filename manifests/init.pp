@@ -21,7 +21,7 @@
 # === Examples
 #
 # * Installation:
-#     class { 'apache': }
+#     class { 'logstash_reporter': }
 #
 #
 # === Authors
