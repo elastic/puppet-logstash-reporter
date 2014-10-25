@@ -15,7 +15,15 @@
 #
 # [*config_file*]
 #   String.  Path to write the config file to
-#   Default: /etc/puppet/logstash.yaml
+#   Default: /etc/(puppetlabs)/puppet/logstash.yaml
+#
+# [*user*]
+#   String.  User to create file with
+#   Default: Pulled from puppet master
+#
+# [*group*]
+#   String.  Group to create file with
+#   Default: Pulled from puppet master
 #
 #
 # === Examples
@@ -37,13 +45,15 @@
 class logstash_reporter (
   $logstash_host  = '127.0.0.1',
   $logstash_port  = 5999,
-  $config_file  = '/etc/puppet/logstash.yaml',
+  $config_file    = "${confdir}/logstash.yaml",
+  $user           = $::settings::user,
+  $group          = $::settings::group,
 ){
 
   file { $config_file:
     ensure  => file,
-    owner   => 'puppet',
-    group   => 'puppet',
+    owner   => $user,
+    group   => $group,
     mode    => '0444',
     content => template('logstash_reporter/logstash.yaml.erb'),
   }
