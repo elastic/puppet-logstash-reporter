@@ -35,15 +35,17 @@
 # Copyright 2013 EvenUp.
 #
 class logstash_reporter (
-  $logstash_host  = '127.0.0.1',
-  $logstash_port  = 5999,
-  $config_file  = '/etc/puppet/logstash.yaml',
-){
+  $logstash_host = '127.0.0.1',
+  $logstash_port = 5999,
+  $config_file   = $::logstash_reporter::params::config_file,
+  $config_owner  = $::logstash_reporter::params::config_owner,
+  $config_group  = $::logstash_reporter::params::config_group,
+) inherits logstash_reporter::params {
 
   file { $config_file:
     ensure  => file,
-    owner   => 'puppet',
-    group   => 'puppet',
+    owner   => $config_owner,
+    group   => $config_group,
     mode    => '0444',
     content => template('logstash_reporter/logstash.yaml.erb'),
   }
