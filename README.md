@@ -1,5 +1,5 @@
-puppet-logstash_reporter
-========================
+puppet-logstash\_reporter
+=========================
 
 Description
 -----------
@@ -16,20 +16,37 @@ Requirements
 A working logstash install with a defined `tcp` input matching the report configuration.
 
 ```
-input { tcp { type => "puppet-report" port => "5959" } }
+input {
+  tcp {
+    type => "puppet-report"
+    port => 5999
+    codec => json
+  }
+}
 ```
 
 **NOTE**
 * Create a simple Logstash config like so (called logstash.conf):
 
 ```
-input { tcp { type => "puppet-report" port => "5959" format => "json_event" } }
-output { stdout { debug => true debug_format => "json" } }
+input {
+  tcp {
+    type => "puppet-report"
+    port => 5999
+    codec => json
+  }
+}
+
+output {
+  stdout {
+    codec => rubydebug
+  }
+}
 ```
 * run logstash with the configuration file
 
 ```
-java -jar build/logstash-<version>-flatjar.jar agent -f logstash.conf
+bin/logstash agent -f logstash.conf
 ```
 
 * Follow the installation instructions below, changing host to the host where logstash is running and port to match the port you defined in your Logstash configuration file.
