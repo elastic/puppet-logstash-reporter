@@ -1,19 +1,51 @@
-puppet-logstash\_reporter
-=========================
+#Logstash Reporter Puppet module
 
-Description
------------
+####Table of Contents
 
-A Puppet report handler for sending logs, event and metrics to a Logstash TCP input.
+1. [Overview](#overview)
+2. [Module description - What the module does and why it is useful](#module-description)
+3. [Setup - The basics of getting started with the Logstash Reporter](#setup)
+  * [The module manages the following](#the-module-manages-the-following)
+  * [Requirements](#requirements)
+4. [Usage - Configuration options and additional functionality](#usage)
+6. [Limitations - OS compatibility, etc.](#limitations)
+7. [Development - Guide for contributing to the module](#development)
+8. [Support - When you need help with this module](#support)
+9. [Credits](#credits)
 
 
-Requirements
-------------
+
+##Overview
+
+This module manages the Logstash reporter which sends puppet reports to Logstash ( http://www.elasticsearch.org/overview/logstash/ )
+
+##Module description
+
+The logstash_reporter module sets up and configures the reporter
+
+##Setup
+
+###The module manages the following
+
+* reporter configuration file.
+
+###Requirements
 
 * `json`
 * `yaml`
 
-A working logstash install with a defined `tcp` input matching the report configuration.
+##Usage
+
+###Main class
+
+####Basic usesage
+
+```puppet
+class { 'logstash_reporter':
+}
+```
+
+And have a TCP input configured in logstash
 
 ```
 input {
@@ -25,53 +57,40 @@ input {
 }
 ```
 
-**NOTE**
-* Create a simple Logstash config like so (called logstash.conf):
+####Separate logstash host and port
 
-```
-input {
-  tcp {
-    type => "puppet-report"
-    port => 5999
-    codec => json
-  }
-}
-
-output {
-  stdout {
-    codec => rubydebug
-  }
+```puppet
+class { 'elasticsearch':
+  logstash_host => '123.123.123.123',
+  logstash_port => 1234,
 }
 ```
-* run logstash with the configuration file
 
-```
-bin/logstash agent -f logstash.conf
-```
+##Limitations
 
-* Follow the installation instructions below, changing host to the host where logstash is running and port to match the port you defined in your Logstash configuration file.
+This module has been built on and tested against Puppet 3.2 and higher.
 
-* Profit?
+The module has been tested on:
 
-Installation and Usage
-----------------------
+* Debian 6/7/8
+* CentOS 6/7
+* Ubuntu 12.04, 14.04
+* OpenSuSE 13.x
 
-1. Define a TCP input as described above in your Logstash configuration file
-2. Copy the `logstash.yaml` to `/etc/puppet`
-3. Enable pluginsync and reports on your puppetmaster and clients in `puppet.conf`
+Other distro's that have been reported to work:
 
-```
-[master]
-report = true
-reports = logstash
-pluginsync = true
-[agent]
-report = true
-pluginsync = true
-```
+* RHEL 6
+* OracleLinux 6
+* Scientific 6
 
-4. Run the Puppet client and sync the report as a plugin
+Testing on other platforms has been light and cannot be guaranteed.
 
-Credits
--------
+##Development
+
+##Support
+
+Need help? Join us in [#logstash](https://webchat.freenode.net?channels=%23logstash) on Freenode IRC or go to our [Discuss](http://discuss.elastic.co/) groups
+
+##Credits
+
 This module was originally posted John Vincent at https://github.com/lusis/puppet-logstash-reporter
