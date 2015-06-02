@@ -17,22 +17,22 @@
 #   String.  Path to write the config file to
 #   Default: /etc/puppet/logstash.yaml
 #
+# [*config_owner*]
+#   String.  Owner of the config file
+#
+# [*config_group*]
+#   String.  Group of the config file
 #
 # === Examples
 #
 # * Installation:
 #     class { 'logstash_reporter': }
 #
-#
 # === Authors
 #
 # * John E. Vincent
 # * Justin Lambert <mailto:jlambert@letsevenup.com>
-#
-#
-# === Copyright
-#
-# Copyright 2013 EvenUp.
+# * Richard Pijnenburg <mailto:richard.pijnenburg@elastic.co>
 #
 class logstash_reporter (
   $logstash_host = '127.0.0.1',

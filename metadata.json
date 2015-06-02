@@ -1,0 +1,80 @@
+{
+  "name": "elasticsearch-logstash_reporter",
+  "version": "0.1.0",
+  "source": "https://github.com/elastic/puppet-logstash-reporter",
+  "author": "elasticsearch",
+  "license": "Apache-2.0",
+  "summary": "Install and configure Logstash reporter for Puppet",
+  "description": "Install and configure Logstash reporter for Puppet",
+  "project_page": "https://github.com/elastic/puppet-logstash-reporter",
+  "issues_url": "https://github.com/elastic/puppet-logtash-reporter/issues",
+  "dependencies": [
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Scientific",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "6",
+        "7",
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "10.04",
+        "12.04",
+        "14.04"
+      ]
+    },
+    {
+      "operatingsystem": "OpenSuSE",
+      "operatingsystemrelease": [
+        "12",
+        "13"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "pe",
+      "version_requirement": ">= 3.2.2"
+    },
+    {
+      "name": "puppet",
+      "version_requirement": ">=3.2.0 <4.0.0"
+    }
+  ]
+}
