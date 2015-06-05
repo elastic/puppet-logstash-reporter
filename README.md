@@ -33,6 +33,19 @@ The logstash_reporter module sets up and configures the reporter
 
 * `json`
 * `yaml`
+* Master puppet.conf needs to use the logstash reporter. 
+```
+[master]
+report = true
+reports = logstash
+pluginsync = true
+```
+* Agent puppet.conf needs to send the reports to master. 
+```
+[agent]
+report = true
+pluginsync = true
+```
 
 ##Usage
 
