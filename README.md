@@ -60,7 +60,7 @@ input {
 ####Separate logstash host and port
 
 ```puppet
-class { 'elasticsearch':
+class { 'logstash_reporter':
   logstash_host => '123.123.123.123',
   logstash_port => 1234,
 }
