@@ -93,4 +93,4 @@ Need help? Join us in [#logstash](https://webchat.freenode.net?channels=%23logst
 
 ##Credits
 
-This module was originally posted John Vincent at https://github.com/lusis/puppet-logstash-reporter
+This module was originally posted by John Vincent at https://github.com/lusis/puppet-logstash-reporter
