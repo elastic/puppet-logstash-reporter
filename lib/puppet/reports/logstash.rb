@@ -63,12 +63,9 @@ Puppet::Reports.register_report(:logstash) do
   
   
   def logs_to_array logs
-    h = []
+    h = ""
     logs.each do |log|
-      l = { 'log' => { 'sources' => {}, 'messages' => {} } }
-      l['log']['level'] = log.level.to_s
-      l['log']['messages']['message'] = log.message
-      l['log']['sources']['source'] = log.source
+      l = "level=" + log.level.to_s + ", source=" + log.source + ", message=" + log.message + "\n"
       h << l
     end
     return h
