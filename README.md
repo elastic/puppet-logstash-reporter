@@ -33,6 +33,19 @@ The logstash_reporter module sets up and configures the reporter
 
 * `json`
 * `yaml`
+* Master puppet.conf needs to use the logstash reporter. 
+```
+[master]
+report = true
+reports = logstash
+pluginsync = true
+```
+* Agent puppet.conf needs to send the reports to master. 
+```
+[agent]
+report = true
+pluginsync = true
+```
 
 ##Usage
 
@@ -60,7 +73,7 @@ input {
 ####Separate logstash host and port
 
 ```puppet
-class { 'elasticsearch':
+class { 'logstash_reporter':
   logstash_host => '123.123.123.123',
   logstash_port => 1234,
 }
@@ -93,4 +106,4 @@ Need help? Join us in [#logstash](https://webchat.freenode.net?channels=%23logst
 
 ##Credits
 
-This module was originally posted John Vincent at https://github.com/lusis/puppet-logstash-reporter
+This module was originally posted by John Vincent at https://github.com/lusis/puppet-logstash-reporter
