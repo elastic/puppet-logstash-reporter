@@ -27,20 +27,14 @@ Puppet::Reports.register_report(:logstash) do
   def process
 
     validate_host(self.host)
-
-    # Push all log lines as a single message
-    logs = []
-    self.logs.each do |log|
-      logs << log
-    end
-
+    
     event = Hash.new
     event["host"] = self.host
     event["@timestamp"] = Time.now.utc.iso8601
     event["@version"] = 1
     event["tags"] = ["puppet-#{self.kind}"]
     event["message"] = "Puppet run on #{self.host} #{self.status}"
-    event["logs"] = logs
+    event["logs"] = logs_to_array(self.logs)
     event["environment"] = self.environment
     event["report_format"] = self.report_format
     event["puppet_version"] = self.puppet_version
@@ -66,6 +60,20 @@ Puppet::Reports.register_report(:logstash) do
       Puppet.err("Failed to write to #{CONFIG[:host]} on port #{CONFIG[:port]}: #{e.message}")
     end
   end
+  
+  
+  def logs_to_array logs
+    h = []
+    logs.each do |log|
+      l = { 'log' => { 'sources' => {}, 'messages' => {} } }
+      l['log']['level'] = log.level.to_s
+      l['log']['messages']['message'] = log.message
+      l['log']['sources']['source'] = log.source
+      h << l
+    end
+    return h
+  end
+
 
   def validate_host(host)
     if host =~ Regexp.union(/[#{SEPARATOR}]/, /\A\.\.?\Z/)
