@@ -44,6 +44,7 @@ Puppet::Reports.register_report(:logstash) do
     event["environment"] = self.environment
     event["report_format"] = self.report_format
     event["puppet_version"] = self.puppet_version
+    event["configuration_version"] = self.configuration_version
     event["status"] = self.status
     event["start_time"] = self.logs.first.time.utc.iso8601
     event["end_time"] = self.logs.last.time.utc.iso8601
