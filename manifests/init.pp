@@ -37,6 +37,7 @@
 class logstash_reporter (
   $logstash_host = '127.0.0.1',
   $logstash_port = 5999,
+  $logstash_resource_status = false,
   $config_file   = $::logstash_reporter::params::config_file,
   $config_owner  = $::logstash_reporter::params::config_owner,
   $config_group  = $::logstash_reporter::params::config_group,
