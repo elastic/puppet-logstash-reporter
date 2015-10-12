@@ -31,8 +31,8 @@ class logstash_reporter::params {
 
   if( $::is_pe == true ) {
     $config_file = '/etc/puppetlabs/puppet/logstash.yaml'
-    $config_owner = 'pe_puppet'
-    $config_group = 'pe_puppet'
+    $config_owner = 'pe-puppet'
+    $config_group = 'pe-puppet'
   } elsif versioncmp($::puppetversion, '4.0.0') >= 0 {
     $config_file = '/etc/puppetlabs/puppet/logstash.yaml'
     $config_owner = 'puppet'
