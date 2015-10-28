@@ -29,7 +29,7 @@
 #
 class logstash_reporter::params {
 
-  if( $::is_pe == true ) {
+  if( $::pe_server_version ) {
     $config_file = '/etc/puppetlabs/puppet/logstash.yaml'
     $config_owner = 'pe-puppet'
     $config_group = 'pe-puppet'
