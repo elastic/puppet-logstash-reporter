@@ -55,6 +55,33 @@ Puppet::Reports.register_report(:logstash) do
         event["metrics"][k][val[1].tr('[A-Z ]', '[a-z_]')] = val[2]
       end
     end
+    event["resource_statuses"] = []
+    rstatus = Hash.new
+    if CONFIG[:resource_status]
+      self.resource_statuses.each do |rname, status|
+        if (status.out_of_sync_count + status.change_count) > 0
+          rstatus[rname] = {}
+          rstatus[rname]["resource_type"] = status.resource_type
+          rstatus[rname]["title"] = status.title
+          rstatus[rname]["file"] = status.file
+          rstatus[rname]["line"] = status.line
+          rstatus[rname]["time"] = status.time
+          if status.events.size > 0
+            status.events.each do |revent|
+              rstatus[rname]["property"] = revent.property
+              rstatus[rname]["status"] = revent.status
+              rstatus[rname]["time"] = revent.time
+              rstatus[rname]["desired_value"] = revent.desired_value
+              rstatus[rname]["previous_value"] = revent.previous_value
+              rstatus[rname]["historical_value"] = revent.historical_value
+              rstatus[rname]["audited"] = revent.audited
+              rstatus[rname]["message"] = revent.message
+            end
+          end
+          event["resource_statuses"] << rstatus[rname]
+        end
+      end
+    end
 
     begin
       Timeout::timeout(CONFIG[:timeout]) do
