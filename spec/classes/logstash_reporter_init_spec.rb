@@ -22,4 +22,10 @@ describe 'logstash_reporter', :type => :class do
     it { should contain_class('logstash_reporter::params') }
     it { should contain_file('/etc/puppetlabs/puppet/logstash.yaml').with(:owner => 'puppet') }
   end
+  context 'pe >= 2015' do
+      let(:facts) { { :puppetversion => '4.0.0', :pe_server_version => true } }
+      it { should contain_class('logstash_reporter') }
+      it { should contain_class('logstash_reporter::params') }
+      it { should contain_file('/etc/puppetlabs/puppet/logstash.yaml').with(:owner => 'pe-puppet') }
+  end
 end
