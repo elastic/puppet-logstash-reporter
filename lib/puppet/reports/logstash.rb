@@ -31,16 +31,7 @@ Puppet::Reports.register_report(:logstash) do
     event = Hash.new
     event["host"] = self.host
     event["@timestamp"] = Time.now.utc.iso8601
-    event["@version"] = 1
-    event["tags"] = ["puppet-#{self.kind}"]
-    event["message"] = "Puppet run on #{self.host} #{self.status}"
     event["logs"] = logs_to_array(self.logs)
-    event["environment"] = self.environment
-    event["report_format"] = self.report_format
-    event["puppet_version"] = self.puppet_version
-    event["status"] = self.status
-    event["start_time"] = self.logs.first.time.utc.iso8601
-    event["end_time"] = self.logs.last.time.utc.iso8601
     event["metrics"] = {}
     metrics.each do |k,v|
       event["metrics"][k] = {}
@@ -48,6 +39,23 @@ Puppet::Reports.register_report(:logstash) do
         event["metrics"][k][val[1].tr('[A-Z ]', '[a-z_]')] = val[2]
       end
     end
+    if self.report_format >= '7' or self.report_format >= 7
+      event["catalog_uuid"] = self.catalog_uuid
+      event["master_used"] = self.master_used
+      event["cached_catalog_status"] = self.cached_catalog_status
+    end
+    event["report_format"] = self.report_format
+    event["puppet_version"] = self.puppet_version
+    event["status"] = self.status
+    event["environment"] = self.environment
+
+    event["start_time"] = self.logs.first.time.utc.iso8601
+    event["end_time"] = self.logs.last.time.utc.iso8601
+
+    event["tags"] = ["puppet-run"]
+    event["message"] = "Puppet run on #{self.host} #{self.status}"
+    
+    
 
     begin
       Timeout::timeout(CONFIG[:timeout]) do
@@ -61,7 +69,6 @@ Puppet::Reports.register_report(:logstash) do
     end
   end
   
-  
   def logs_to_array logs
     h = []
     logs.each do |log|
@@ -70,7 +77,6 @@ Puppet::Reports.register_report(:logstash) do
     end
     return h
   end
-
 
   def validate_host(host)
     if host =~ Regexp.union(/[#{SEPARATOR}]/, /\A\.\.?\Z/)
