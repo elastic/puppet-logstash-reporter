@@ -35,11 +35,12 @@
 # * Richard Pijnenburg <mailto:richard.pijnenburg@elastic.co>
 #
 class logstash_reporter (
-  $logstash_host = '127.0.0.1',
-  $logstash_port = 5999,
-  $config_file   = $::logstash_reporter::params::config_file,
-  $config_owner  = $::logstash_reporter::params::config_owner,
-  $config_group  = $::logstash_reporter::params::config_group,
+  $logstash_host    = '127.0.0.1',
+  $logstash_port    = 5999,
+  $logstash_timeout = 5,
+  $config_file      = $::logstash_reporter::params::config_file,
+  $config_owner     = $::logstash_reporter::params::config_owner,
+  $config_group     = $::logstash_reporter::params::config_group,
 ) inherits logstash_reporter::params {
 
   file { $config_file:
