@@ -39,7 +39,7 @@ Puppet::Reports.register_report(:logstash) do
         event["metrics"][k][val[1].tr('[A-Z ]', '[a-z_]')] = val[2]
       end
     end
-    if self.report_format >= '7' or self.report_format >= 7
+    if self.report_format >= 7
       event["catalog_uuid"] = self.catalog_uuid
       event["master_used"] = self.master_used
       event["cached_catalog_status"] = self.cached_catalog_status
