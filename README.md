@@ -1,6 +1,6 @@
-#Logstash Reporter Puppet module
+# Logstash Reporter Puppet module
 
-####Table of Contents
+#### Table of Contents
 
 1. [Overview](#overview)
 2. [Module description - What the module does and why it is useful](#module-description)
@@ -15,21 +15,21 @@
 
 
 
-##Overview
+## Overview
 
-This module manages the Logstash reporter which sends puppet reports to Logstash ( http://www.elasticsearch.org/overview/logstash/ )
+This module manages the Logstash reporter which sends puppet reports to [Logstash]( http://www.elasticsearch.org/overview/logstash/)
 
-##Module description
+## Module description
 
 The logstash_reporter module sets up and configures the reporter
 
-##Setup
+## Setup
 
-###The module manages the following
+### The module manages the following
 
 * reporter configuration file.
 
-###Requirements
+### Requirements
 
 * `json`
 * `yaml`
@@ -47,11 +47,11 @@ report = true
 pluginsync = true
 ```
 
-##Usage
+## Usage
 
-###Main class
+### Main class
 
-####Basic usesage
+#### Basic usesage
 
 ```puppet
 class { 'logstash_reporter':
@@ -70,7 +70,7 @@ input {
 }
 ```
 
-####Separate logstash host and port
+#### Separate logstash host and port
 
 ```puppet
 class { 'logstash_reporter':
@@ -79,7 +79,7 @@ class { 'logstash_reporter':
 }
 ```
 
-##Limitations
+## Limitations
 
 This module has been built on and tested against Puppet 3.2 and higher.
 
@@ -98,12 +98,12 @@ Other distro's that have been reported to work:
 
 Testing on other platforms has been light and cannot be guaranteed.
 
-##Development
+## Development
 
-##Support
+## Support
 
 Need help? Join us in [#logstash](https://webchat.freenode.net?channels=%23logstash) on Freenode IRC or go to our [Discuss](http://discuss.elastic.co/) groups
 
-##Credits
+## Credits
 
 This module was originally posted by John Vincent at https://github.com/lusis/puppet-logstash-reporter
