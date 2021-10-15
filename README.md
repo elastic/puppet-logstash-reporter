@@ -1,3 +1,7 @@
+# ARCHIVED
+
+This project is no longer maintained.
+
 #Logstash Reporter Puppet module
 
 ####Table of Contents
