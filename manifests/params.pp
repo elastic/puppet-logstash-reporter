@@ -30,17 +30,29 @@
 class logstash_reporter::params {
 
   if( $::is_pe == true ) {
-    $config_file = '/etc/puppetlabs/puppet/logstash.yaml'
-    $config_owner = 'pe-puppet'
-    $config_group = 'pe-puppet'
+    if ( $::osfamily == 'windows' ){
+      $config_file = 'C:\\ProgramData\\PuppetLabs\\puppet\\etc\\logstash.yaml'
+    } else {
+      $config_file = '/etc/puppetlabs/puppet/logstash.yaml'
+    }
+    $config_owner = 'pe_puppet'
+    $config_group = 'pe_puppet'
   } elsif versioncmp($::puppetversion, '4.0.0') >= 0 {
-    $config_file = '/etc/puppetlabs/puppet/logstash.yaml'
+    if ( $::osfamily == 'windows' ){
+      $config_file = 'C:\\ProgramData\\PuppetLabs\\puppet\\etc\\logstash.yaml'
+    } else {
+      $config_file = '/etc/puppetlabs/puppet/logstash.yaml'
+    }
     $config_owner = 'puppet'
     $config_group = 'puppet'
   } else {
-    $config_file = '/etc/puppet/logstash.yaml'
-    $config_owner = 'puppet'
-    $config_group = 'puppet'
+    if ( $::osfamily == 'windows' ){
+      $config_file = 'C:\\ProgramData\\PuppetLabs\\puppet\\etc\\logstash.yaml'
+    } else {
+      $config_file = '/etc/puppet/logstash.yaml'
+      $config_owner = 'puppet'
+      $config_group = 'puppet'
+    }
   }
 
 }
