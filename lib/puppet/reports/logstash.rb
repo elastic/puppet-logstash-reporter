@@ -41,11 +41,16 @@ Puppet::Reports.register_report(:logstash) do
     end
     if self.report_format >= 7
       event["catalog_uuid"] = self.catalog_uuid
-      event["master_used"] = self.master_used
+      if self.report_format >= 
+        event["server_used"] = self.server_used
+      else
+        event["master_used"] = self.master_used
+      end
       event["cached_catalog_status"] = self.cached_catalog_status
     end
     event["report_format"] = self.report_format
     event["puppet_version"] = self.puppet_version
+    event["configuration_version"] = self.configuration_version
     event["status"] = self.status
     event["environment"] = self.environment
 
