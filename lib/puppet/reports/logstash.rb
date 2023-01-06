@@ -41,7 +41,7 @@ Puppet::Reports.register_report(:logstash) do
     end
     if self.report_format >= 7
       event["catalog_uuid"] = self.catalog_uuid
-      if self.report_format >= 
+      if self.report_format >= 12
         event["server_used"] = self.server_used
       else
         event["master_used"] = self.master_used
